@@ -25,12 +25,12 @@ yarn install
 
 ## Usage
 
-To run on Android
+### Android
 ```sh
 yarn android
 ```
 
-To run on iOS
+### iOS
 ```sh
 yarn ios
 ```
