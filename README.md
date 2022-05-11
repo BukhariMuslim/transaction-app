@@ -21,6 +21,7 @@ For further information: https://reactnative.dev/docs/environment-setup
 
 ```sh
 yarn install
+yarn pods
 ```
 
 ## Usage
