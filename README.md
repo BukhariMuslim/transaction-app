@@ -5,6 +5,18 @@
 
 > Flip Transaction Application
 
+## Prerequisite
+
+```sh
+- node
+- watchman
+- React Native: 0.68.2
+- JDK: 11 (Azul Zulu)
+- Xcode, iOS Simulator, & Command Line Tools
+```
+
+For further information: https://reactnative.dev/docs/environment-setup
+
 ## Install
 
 ```sh
@@ -13,14 +25,14 @@ yarn install
 
 ## Usage
 
+To run on Android
 ```sh
-yarn start
+yarn android
 ```
 
-## Run tests
-
+To run on iOS
 ```sh
-yarn run test
+yarn ios
 ```
 
 ## Author
