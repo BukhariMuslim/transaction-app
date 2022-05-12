@@ -13,23 +13,31 @@ import {compareByKey, compareByDateKey} from '../../utils/helper';
 import {FILTER} from '../../utils/constants';
 import {updateData} from '../../stores/transaction';
 
+const fetchData = async (dispatch, setIsRefreshing) => {
+  setIsRefreshing(true);
+  try {
+    const collection = await getDataTransaction();
+    setIsRefreshing(false);
+    dispatch(updateData(collection));
+  } catch (e) {
+    setIsRefreshing(false);
+    console.log('error', e);
+  }
+};
+
 const TransactionListPage = props => {
   const {navigation} = props;
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
   const [isShowModal, setIsShowModal] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [sortValue, setSortValue] = useState(FILTER.URUTKAN);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const collection = await getDataTransaction();
-        dispatch(updateData(collection));
-      } catch (e) {
-        console.log('error', e);
-      }
-    };
-    fetchData();
+    fetchData(dispatch, setIsRefreshing);
   }, [dispatch]);
+  const onRefresh = () => {
+    fetchData(dispatch, setIsRefreshing);
+  };
   let data = useSelector(state => {
     let tempData = [...state.transaction.data];
     switch (FILTER[sortValue]) {
@@ -100,6 +108,8 @@ const TransactionListPage = props => {
           renderItem={itemProp => (
             <ListTransactionItem {...itemProp} onPressAction={onPressAction} />
           )}
+          refreshing={isRefreshing}
+          onRefresh={onRefresh}
           keyExtractor={item => item.id}
         />
       ) : (
