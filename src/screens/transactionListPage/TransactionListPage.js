@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {FlatList, SafeAreaView, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import ListTransactionItem from './ListTransactionItem';
 import ModalFilter from './ModalFilter';
-import {Text, SearchBar} from '../../components';
+import {Text, Toast, SearchBar} from '../../components';
 import {container} from '../../themes/styles';
 import {backgroundColor, placeholderColor} from '../../themes/colors';
 import {getDataTransaction} from '../../utils/api';
@@ -13,7 +13,7 @@ import {compareByKey, compareByDateKey} from '../../utils/helper';
 import {FILTER} from '../../utils/constants';
 import {updateData} from '../../stores/transaction';
 
-const fetchData = async (dispatch, setIsRefreshing) => {
+const fetchData = async (dispatch, setIsRefreshing, onError) => {
   setIsRefreshing(true);
   try {
     const collection = await getDataTransaction();
@@ -21,7 +21,7 @@ const fetchData = async (dispatch, setIsRefreshing) => {
     dispatch(updateData(collection));
   } catch (e) {
     setIsRefreshing(false);
-    console.log('error', e);
+    onError(e);
   }
 };
 
@@ -32,11 +32,20 @@ const TransactionListPage = props => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [sortValue, setSortValue] = useState(FILTER.URUTKAN);
+  const [toastIsVisible, setToastIsVisible] = useState(false);
+  const [toastText, setToastText] = useState('');
+  const hide = useCallback(() => {
+    setToastIsVisible(false);
+  }, []);
+  const onError = errorText => {
+    setToastText(errorText);
+    setToastIsVisible(true);
+  };
   useEffect(() => {
-    fetchData(dispatch, setIsRefreshing);
+    fetchData(dispatch, setIsRefreshing, onError);
   }, [dispatch]);
   const onRefresh = () => {
-    fetchData(dispatch, setIsRefreshing);
+    fetchData(dispatch, setIsRefreshing, onError);
   };
   let data = useSelector(state => {
     let tempData = [...state.transaction.data];
@@ -126,6 +135,7 @@ const TransactionListPage = props => {
           </Text>
         </View>
       )}
+      <Toast isVisible={toastIsVisible} hide={hide} text={toastText} />
       <ModalFilter
         onPress={onModalSelect}
         isShowModal={isShowModal}

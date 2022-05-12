@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState, useCallback} from 'react';
+import React, {useRef, useState, useCallback} from 'react';
 import {Animated, Clipboard, Easing, SafeAreaView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Button, Text} from '../../components';
+import {Button, Text, Toast} from '../../components';
 import {container} from '../../themes/styles';
 import {
   backgroundColor,
@@ -22,6 +22,10 @@ const TransactionDetailPage = props => {
       params: {id},
     },
   } = props;
+  const [toastIsVisible, setToastIsVisible] = useState(false);
+  const hide = useCallback(() => {
+    setToastIsVisible(false);
+  }, []);
   const transactionData = useSelector(state =>
     typecast(
       Transaction,
@@ -50,35 +54,6 @@ const TransactionDetailPage = props => {
       statusText = 'Pengecekan';
       break;
   }
-  const opacityRef = useRef(new Animated.Value(0));
-  const timeout = useRef();
-  const [toastIsVisible, setToastIsVisible] = useState(false);
-  const hide = useCallback(() => {
-    setToastIsVisible(false);
-  }, []);
-  useEffect(() => {
-    if (toastIsVisible) {
-      Animated.timing(opacityRef.current, {
-        duration: 300,
-        easing: Easing.ease,
-        toValue: 1,
-        useNativeDriver: true,
-      }).start();
-      timeout.current = setTimeout(hide, 1500);
-      return () => {
-        if (timeout.current) {
-          clearTimeout(timeout.current);
-        }
-      };
-    } else {
-      Animated.timing(opacityRef.current, {
-        duration: 450,
-        easing: Easing.ease,
-        toValue: 0,
-        useNativeDriver: true,
-      }).start();
-    }
-  }, [hide, toastIsVisible]);
   const toastText = 'ID transaksi berhasil disalin';
   const [toggleDetail, setToggleDetail] = useState(true);
   const animatedRef = useRef(new Animated.Value(1)).current;
@@ -203,12 +178,7 @@ const TransactionDetailPage = props => {
           </View>
         </Animated.View>
       </View>
-      <Animated.View
-        style={[style.toastContainer, {opacity: opacityRef.current}]}>
-        <View style={style.toastContentContainer}>
-          <Text color={whiteColor}>{toastText}</Text>
-        </View>
-      </Animated.View>
+      <Toast isVisible={toastIsVisible} hide={hide} text={toastText} />
     </SafeAreaView>
   );
 };
@@ -271,19 +241,6 @@ const style = {
   statusText: {
     textAlign: 'center',
     marginBottom: 32,
-  },
-  toastContainer: {
-    position: 'absolute',
-    bottom: 32,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-  },
-  toastContentContainer: {
-    backgroundColor: placeholderColor,
-    opacity: 1,
-    padding: 8,
-    borderRadius: 16,
   },
 };
 
