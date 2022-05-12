@@ -1,9 +1,9 @@
 import React, {memo} from 'react';
 import {Text as RNText} from 'react-native';
 
-import FONT from '../themes/fonts';
-import SIZE from '../themes/size';
-import {blackColor} from '../themes/colors';
+import FONT from '@themes/fonts';
+import SIZE from '@themes/size';
+import {blackColor} from '@themes/colors';
 
 const Text = props => {
   const {

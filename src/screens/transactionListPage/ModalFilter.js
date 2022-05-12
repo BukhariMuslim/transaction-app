@@ -2,14 +2,10 @@ import React, {memo} from 'react';
 import {View, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Button, Text} from '../../components';
-import {container} from '../../themes/styles';
-import {
-  primaryColor,
-  whiteColor,
-  modalBackgroundColor,
-} from '../../themes/colors';
-import {FILTER} from '../../utils/constants';
+import {Button, Text} from '@components';
+import {container} from '@themes/styles';
+import {primaryColor, whiteColor, modalBackgroundColor} from '@themes/colors';
+import {FILTER} from '@utils/constants';
 
 const ModalFilter = props => {
   const {onPress, isShowModal, sortValue, onModalClose} = props;

@@ -1,3 +1,3 @@
-import * as TransactionDetailPage from './TransactionDetailPage';
+import * as TransactionDetailPage from '@screens/transactionDetailPage/TransactionDetailPage';
 
 export {TransactionDetailPage};

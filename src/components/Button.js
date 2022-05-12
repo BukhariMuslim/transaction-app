@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 import {TouchableOpacity} from 'react-native';
 
-import Text from './Text';
-import {blackColor} from '../themes/colors';
+import Text from '@components/Text';
+import {blackColor} from '@themes/colors';
 
 const Button = props => {
   const {children, style, text, textStyle, ...restProps} = props;

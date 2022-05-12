@@ -3,17 +3,17 @@ import {Animated, Clipboard, Easing, SafeAreaView, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Button, Text, Toast} from '../../components';
-import {container} from '../../themes/styles';
+import {Button, Text, Toast} from '@components';
+import {container} from '@themes/styles';
 import {
   backgroundColor,
   placeholderColor,
   whiteColor,
   primaryColor,
   secondaryColor,
-} from '../../themes/colors';
-import {typecast} from '../../utils/helper';
-import {Transaction} from '../../models';
+} from '@themes/colors';
+import {typecast} from '@utils/helper';
+import {Transaction} from '@models';
 
 const TransactionDetailPage = props => {
   const {

@@ -1,8 +1,8 @@
 import React, {useRef, useEffect, memo} from 'react';
 import {Animated, Easing, View} from 'react-native';
 
-import Text from './Text';
-import {whiteColor, placeholderColor} from '../themes/colors';
+import Text from '@components/Text';
+import {whiteColor, placeholderColor} from '@themes/colors';
 
 const Toast = props => {
   const {text, isVisible, hide} = props;

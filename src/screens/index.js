@@ -1,4 +1,4 @@
-import {TransactionListPage} from './transactionListPage';
-import {TransactionDetailPage} from './transactionDetailPage';
+import {TransactionListPage} from '@screens/transactionListPage';
+import {TransactionDetailPage} from '@screens/transactionDetailPage';
 
 export {TransactionListPage, TransactionDetailPage};

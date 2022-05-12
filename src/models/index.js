@@ -1,3 +1,3 @@
-import Transaction from './Transaction';
+import Transaction from '@models/Transaction';
 
 export {Transaction};

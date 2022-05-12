@@ -1,16 +1,16 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import {Button, Text} from '../../components';
+import {Button, Text} from '@components';
 import {
   blackColor,
   whiteColor,
   primaryColor,
   secondaryColor,
-} from '../../themes/colors';
-import {container} from '../../themes/styles';
-import {typecast} from '../../utils/helper';
-import {Transaction} from '../../models';
+} from '@themes/colors';
+import {container} from '@themes/styles';
+import {typecast} from '@utils/helper';
+import {Transaction} from '@models';
 
 const SUCCESS = 'SUCCESS';
 

@@ -1,4 +1,4 @@
-import {formatCurrency, formatDateString} from '../utils/helper';
+import {formatCurrency, formatDateString} from '@utils/helper';
 
 class Transaction {
   constructor(...props) {

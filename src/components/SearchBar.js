@@ -2,11 +2,11 @@ import React, {memo} from 'react';
 import {TextInput, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Button from './Button';
-import Text from './Text';
-import {whiteColor, placeholderColor, primaryColor} from '../themes/colors';
-import {container} from '../themes/styles';
-import FONT from '../themes/fonts';
+import Button from '@components/Button';
+import Text from '@components/Text';
+import {whiteColor, placeholderColor, primaryColor} from '@themes/colors';
+import {container} from '@themes/styles';
+import FONT from '@themes/fonts';
 
 const SEARCH_PLACE_HOLDER = 'Cari nama, bank, atau nominal';
 

@@ -3,15 +3,15 @@ import {FlatList, SafeAreaView, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import ListTransactionItem from './ListTransactionItem';
-import ModalFilter from './ModalFilter';
-import {Text, Toast, SearchBar} from '../../components';
-import {container} from '../../themes/styles';
-import {backgroundColor, placeholderColor} from '../../themes/colors';
-import {getDataTransaction} from '../../utils/api';
-import {compareByKey, compareByDateKey} from '../../utils/helper';
-import {FILTER} from '../../utils/constants';
-import {updateData} from '../../stores/transaction';
+import ListTransactionItem from '@screens/transactionListPage/ListTransactionItem';
+import ModalFilter from '@screens/transactionListPage/ModalFilter';
+import {Text, Toast, SearchBar} from '@components';
+import {container} from '@themes/styles';
+import {backgroundColor, placeholderColor} from '@themes/colors';
+import {getDataTransaction} from '@utils/api';
+import {compareByKey, compareByDateKey} from '@utils/helper';
+import {FILTER} from '@utils/constants';
+import {updateData} from '@stores/transaction';
 
 const fetchData = async (dispatch, setIsRefreshing, onError) => {
   setIsRefreshing(true);

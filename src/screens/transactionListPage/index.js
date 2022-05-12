@@ -1,3 +1,3 @@
-import * as TransactionListPage from './TransactionListPage';
+import * as TransactionListPage from '@screens/transactionListPage/TransactionListPage';
 
 export {TransactionListPage};

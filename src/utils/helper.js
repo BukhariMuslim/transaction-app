@@ -1,4 +1,4 @@
-import {MONTH} from './constants';
+import {MONTH} from '@utils/constants';
 
 export const compareByKey = (first, next, key, isReverse) => {
   if (first[key] < next[key]) {
